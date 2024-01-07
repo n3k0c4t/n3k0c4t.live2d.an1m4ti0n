@@ -105,26 +105,20 @@ internal class CubismMotion3Converter
         target = null;
         if (path != 0 && bonePathHash.TryGetValue(path, out var boneName))
         {
-            // Console.WriteLine("bonePathHash {0} -> {1}", path, boneName);
             var index = boneName.LastIndexOf('/');
             id = boneName.Substring(index + 1);
             target = boneName.Substring(0, index);
             if (target == "Parameters")
             {
-                if (!boneName.StartsWith("Param") && !boneName.StartsWith("PARAM"))
-                    Console.WriteLine("bonePathHash {0} -> {1}", path, boneName);
                 target = "Parameter";
             }
             else if (target == "Parts")
             {
-                if (!boneName.StartsWith("Parts") && !boneName.StartsWith("PARTS"))
-                    Console.WriteLine("bonePathHash {0} -> {1}", path, boneName);
                 target = "PartOpacity";
             }
         }
         else
         {
-            if (path != 0) Console.WriteLine("bonePathHash NOT FOUND! {0}", path);
             binding.script.TryGet(out MonoScript script);
             switch (script.m_ClassName)
             {
@@ -151,8 +145,6 @@ internal class CubismMotion3Converter
             var crc = new SevenZip.CRC();
             var bytes = Encoding.UTF8.GetBytes("Parameters/" + name);
             crc.Update(bytes, 0, (uint)bytes.Length);
-            if (bonePathHash.ContainsKey(crc.GetDigest()))
-                Console.WriteLine("DuplicateKey!");
             bonePathHash[crc.GetDigest()] = "Parameters/" + name;
         }
 
@@ -161,8 +153,6 @@ internal class CubismMotion3Converter
             var crc = new SevenZip.CRC();
             var bytes = Encoding.UTF8.GetBytes("Parts/" + name);
             crc.Update(bytes, 0, (uint)bytes.Length);
-            if (bonePathHash.ContainsKey(crc.GetDigest()))
-                Console.WriteLine("DuplicateKey!");
             bonePathHash[crc.GetDigest()] = "Parts/" + name;
         }
     }
