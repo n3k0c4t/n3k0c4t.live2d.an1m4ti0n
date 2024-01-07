@@ -9,7 +9,7 @@
 基于 [UnityLive2DExtractor](https://github.com/Perfare/UnityLive2DExtractor) 修改而成，版权归原作者所有。
 
 ## Command-line
-n3k0c4t.live2d.an1m4ti0n.exe <asset map> <output folder>
+`n3k0c4t.live2d.an1m4ti0n.exe <asset map> <output folder>`
 
 ## Requirements
 - [.NET 6](https://dotnet.microsoft.com/ja-jp/download/dotnet/6.0)
